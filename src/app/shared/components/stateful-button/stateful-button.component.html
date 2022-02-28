@@ -1,0 +1,7 @@
+<button (click)="button_click()" class="btn btn-primary" [disabled]="isInProgressMode || isCompletedMode || !active"
+    [ngClass]="{ 'inprogress' : isInProgressMode, 'default' : isDefaultMode, 'completed' : isCompletedMode}">
+     <ng-content></ng-content> 
+     <div *ngIf="isInProgressMode">
+        <ng-container [ngTemplateOutlet]="content.templateRef"></ng-container>
+    </div>
+</button>

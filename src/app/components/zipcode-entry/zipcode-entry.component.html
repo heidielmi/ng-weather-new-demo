@@ -1,0 +1,44 @@
+<div class="container">
+    <div>
+      <h2>Please select a country:</h2>
+    </div>
+    <div class="input-box">
+      <div><input type="text" #countryBox (keyup)="searchCountry(countryBox.value)" autofocus 
+          placeholder="Please enter a country.(example: USA, Australia)" class="form-control"></div>
+  
+      <div class="suggestion-box" *ngIf="countryList.length > 0 && countrySugessionBoxDisplayed">
+        <!-- STEP #3 - Add a country selection component with auto-filtering -->
+        <div class="suggestion-item" *ngFor="let country of countryList"
+          (click)="countryBox.value = country.countryName; selectCountry(country)">
+          <a [innerHTML]="country.countryName | boldMatchingSection: countryBox.value">
+          </a></div>
+  
+      </div>
+    </div>
+    <div>
+      <h2>Enter a zipcode:</h2>
+    </div>
+    <div class="input-box">
+      <div><input type="text" [disabled]="!selectedCountryExists" [(ngModel)]="zipCode"
+          placeholder="Please enter a zipcode" class="form-control"></div>
+    </div>
+    <div class="button-box">
+      <!-- <app-stateful-button *ngIf="reqInProgress" [httpState]="httpReqState" (statefulButtonClicked)="addLocation(zipCode)" [active]="selectedCountryExists && zipCode !==''">
+    
+        {{btnText}}<img [src]="'../../assets/images/spinner.png'" width="20px">
+      </app-stateful-button>
+      <app-stateful-button *ngIf="!reqInProgress" [httpState]="httpReqState" (statefulButtonClicked)="addLocation(zipCode)" [active]="selectedCountryExists && zipCode !== ''" >
+  
+         {{btnText}}
+      </app-stateful-button> -->
+  
+      <app-stateful-button [httpState]="httpReqState" (statefulButtonClicked)="addLocation(zipCode)" [active]="selectedCountryExists && zipCode !== ''" >
+  
+        {{btnText}}
+        <ng-template appTemplateContent>
+          <img [src]="'../../../assets/images/spinner.png'" width="20px">
+        </ng-template>
+     </app-stateful-button>
+    </div>
+  
+  </div>

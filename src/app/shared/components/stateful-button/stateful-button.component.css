@@ -1,0 +1,14 @@
+button {
+    color: #ffffff;
+}
+.default {
+    background-color: #337ab7;
+}
+.inprogress {
+    background-color: pink;
+}
+.completed {
+    background-color: #0ab852;
+}
+
+
