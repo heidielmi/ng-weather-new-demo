@@ -19,6 +19,7 @@ export class ZipcodeEntryComponent {
   selectedCountryExists = false;
   btnText = "";
   zipCode = "";
+  apiResultError = "";
   private countrySearch$ = new Subject<string>();
   countrySugessionBoxDisplayed = true;
   countryList: ICountry[]= [] ;
@@ -108,11 +109,7 @@ export class ZipcodeEntryComponent {
       // reset button to its initial state after 500 milliseconds
       setTimeout(() => {
         // The button should also be reset to its initial state after 500 milliseconds
-        this.httpReqState = HttpStateEnum.default;
-        this.btnText = environment.defaultText;
-        if (this.btnText === '') {
-          this.btnText = 'Save';
-        }
+        this.setButtonToDefaultState();
       }, 500);
     });
   }
@@ -163,25 +160,39 @@ export class ZipcodeEntryComponent {
         this.locationService.addLocationToLocalStorage(countryCode, zipcode);
         // reset button to its initial state after 500 milliseconds
         setTimeout(() => {
-          this.httpReqState = HttpStateEnum.default;
-          this.btnText = environment.defaultText;
-          if (this.btnText === '') {
-            this.btnText = 'Save';
-          }
+          this.setButtonToDefaultState();
         }, 500);
+      }, (err$) => {
+        this.setButtonToDefaultState();
+        if (!err$.ok && err$.status === 404) {
+          this.apiResultError = "Zip code can't be found, Please enter a valid zip code."
+
+        }
       });
   }
 
+  setButtonToDefaultState(){
+    this.httpReqState = HttpStateEnum.default;
+    this.btnText = environment.defaultText;
+    if (this.btnText === '') {
+      this.btnText = 'Save';
+    }
+  }
   searchCountry(location: string) {
     this.countrySugessionBoxDisplayed = true;
     this.zipCode = "";
+    this.apiResultError = "";
     this.countrySearch$.next(location);
   }
 
   selectCountry(selectedCountry: ICountry) {
     this.selectedCountry = selectedCountry;
+    this.apiResultError = "";
     this.countrySugessionBoxDisplayed = false;
     this.selectedCountryExists = true;
+  }
+  zipCodeChange() {
+    this.apiResultError = "";
   }
 
 

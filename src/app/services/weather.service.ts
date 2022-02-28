@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { combineLatest, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { IWeatherCondition } from '../models/weather-condition.model';
 import { Select, Store } from '@ngxs/store';
@@ -69,6 +69,9 @@ export class WeatherService {
       return this.http.get(`${WeatherService.URL}/weather?q=${zipCode},${countryCode}&APPID=${WeatherService.APPID}`).pipe(
       map((apiRes$) => {
         return this.transformToWeatherCondition(countryCode, zipCode, apiRes$);
+      }),
+      catchError((err$) => {
+          throw err$;
       })
     );
   }

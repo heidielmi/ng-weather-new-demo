@@ -19,7 +19,7 @@
       <h2>Enter a zipcode:</h2>
     </div>
     <div class="input-box">
-      <div><input type="text" [disabled]="!selectedCountryExists" [(ngModel)]="zipCode"
+      <div><input type="text" [disabled]="!selectedCountryExists" (keyup)="zipCodeChange()" [(ngModel)]="zipCode"
           placeholder="Please enter a zipcode" class="form-control"></div>
     </div>
     <div class="button-box">
@@ -33,6 +33,9 @@
         </ng-template>
         
      </app-stateful-button>
+    </div>
+    <div class="result-error-box">
+      {{apiResultError}}
     </div>
   
   </div>

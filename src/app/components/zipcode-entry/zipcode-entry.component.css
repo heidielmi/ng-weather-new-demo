@@ -43,3 +43,7 @@ a:hover {
   width: 190px;
   background-color: lightgray;
 }
+.result-error-box {
+  padding-bottom: 20px;
+  color: red;
+}
