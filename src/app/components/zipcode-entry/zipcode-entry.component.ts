@@ -16,7 +16,6 @@ import { ICountry } from '../../models/location.model';
 })
 export class ZipcodeEntryComponent {
   httpReqState: HttpStateEnum = HttpStateEnum.default;
-  reqInProgress = false;
   selectedCountryExists = false;
   btnText = "";
   zipCode = "";
@@ -119,7 +118,6 @@ export class ZipcodeEntryComponent {
   }
   /** Return http-state for sent, upload progress, & response events */
   private getEventMessage(event: HttpEvent<any>) {
-    this.reqInProgress = false;
     switch (event.type) {
       case HttpEventType.Sent:
         // this code practice just shows three states(dflt, inprogress and completed)
@@ -136,7 +134,6 @@ export class ZipcodeEntryComponent {
 
       default:
         this.httpReqState = HttpStateEnum.inprogress;
-        this.reqInProgress = true;
         if (environment.inProgressText) {
           this.btnText = 'Saving...';
         }
@@ -153,11 +150,9 @@ export class ZipcodeEntryComponent {
     if (this.selectedCountry) {
       countryCode = this.selectedCountry.countryCode;
     }
-    this.reqInProgress = true;
     this.weatherService
       .getZipCodeConditions(countryCode, zipcode)
       .subscribe((res$: IWeatherCondition) => {
-        this.reqInProgress = false;
         this.httpReqState = HttpStateEnum.completed;
         this.btnText = environment.completedText;
         if (this.btnText === '') {

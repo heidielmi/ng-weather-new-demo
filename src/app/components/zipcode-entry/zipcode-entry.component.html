@@ -23,21 +23,15 @@
           placeholder="Please enter a zipcode" class="form-control"></div>
     </div>
     <div class="button-box">
-      <!-- <app-stateful-button *ngIf="reqInProgress" [httpState]="httpReqState" (statefulButtonClicked)="addLocation(zipCode)" [active]="selectedCountryExists && zipCode !==''">
-    
-        {{btnText}}<img [src]="'../../assets/images/spinner.png'" width="20px">
-      </app-stateful-button>
-      <app-stateful-button *ngIf="!reqInProgress" [httpState]="httpReqState" (statefulButtonClicked)="addLocation(zipCode)" [active]="selectedCountryExists && zipCode !== ''" >
-  
-         {{btnText}}
-      </app-stateful-button> -->
   
       <app-stateful-button [httpState]="httpReqState" (statefulButtonClicked)="addLocation(zipCode)" [active]="selectedCountryExists && zipCode !== ''" >
-  
         {{btnText}}
+
+          <!-- using conditional content projection -->
         <ng-template appTemplateContent>
           <img [src]="'../../../assets/images/spinner.png'" width="20px">
         </ng-template>
+        
      </app-stateful-button>
     </div>
   

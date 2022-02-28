@@ -1,40 +1,45 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding-bottom: 30px;
 }
-.button-box{
-    padding-top: 20px;
+
+.button-box {
+  padding-top: 20px;
 }
+
 .input-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: 20px;
 }
+
 .suggestion-box {
-    display: flex;
-    width: 200px;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    border:1px solid gray;
+  display: flex;
+  width: 200px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border: 1px solid gray;
 }
+
 .suggestion-item {
-    width: 200px;
-    border-bottom: 1px solid lightgray;
+  width: 200px;
+  padding: 5px;
+  border-bottom: 1px solid lightgray;
 }
 
 a {
-    width: 200px!important;
-    text-decoration: none;
-    color: #000000 !important;
+  width: 190px;
+  text-decoration: none;
+  color: #000000 !important;
 }
 
-a:hover{
-    width: 200px;
-    background-color: lightgray;
-    }
+a:hover {
+  width: 190px;
+  background-color: lightgray;
+}

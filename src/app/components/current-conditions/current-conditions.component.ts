@@ -69,4 +69,7 @@ export class CurrentConditionsComponent implements OnInit {
       this.zipCodeSubscription.unsubscribe();
     }
   }
+  getWeatherIcon(id: number) {
+    return this.weatherService.getWeatherIcon(id);
+  }
 }

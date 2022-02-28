@@ -13,9 +13,10 @@
           <a [routerLink]="['/forecast', location.zip, location.countryCode]" >Show 5-day forecast for {{location.data.name}}</a>
         </p>
       </div>
-      <div>
-        <span class="close" (click)="removeLocation(location)">&times;</span>
-        <!-- <img [src]="weatherService.getWeatherIcon(location.data.weather[0].id)"> -->
+      <div class="right-pane">
+       
+         <img [src]="getWeatherIcon(location.data.weather[0].id)"> 
+         <span class="close" (click)="removeLocation(location)">&times;</span>
       </div>
    </div>
   </div>
